@@ -16,6 +16,7 @@ export default function AddTaskScreen({ navigation }) {
       rate: parseFloat(rate),
       date,
     };
+    console.log(task);
     await saveTask(task);
     navigation.goBack();
   };
@@ -24,7 +25,7 @@ export default function AddTaskScreen({ navigation }) {
     <View style={{ padding: 16 }}>
       <TextInput label="Descripción" value={description} onChangeText={setDescription} />
       <TextInput label="Horas" keyboardType="numeric" value={hours} onChangeText={setHours} />
-      <TextInput label="₡ por hora" keyboardType="numeric" value={rate} onChangeText={setRate} />
+      <TextInput label="por hora" keyboardType="numeric" value={rate} onChangeText={setRate} />
       <Button mode="contained" onPress={handleSave} style={styles.buttonAdd} textColor="white">
         Guardar Tarea
       </Button>

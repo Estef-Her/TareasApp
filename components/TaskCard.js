@@ -10,7 +10,7 @@ export default function TaskCard({ task, onDelete }) {
     }).format(value);
   };
   return (
-    <Card style={{ marginVertical: 5,backgroundColor:'#FAF3E0',marginVertical:10}}>
+    <Card style={{ marginVertical: 5,backgroundColor:'#ffffffff',marginVertical:10}}>
       <Card.Content>
       <Text
       style={{
