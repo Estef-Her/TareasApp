@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/image.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "splash": {
       "image": "./assets/image.png",
       "resizeMode": "contain",
@@ -16,6 +16,7 @@
       "supportsTablet": true
     },
     "android": {
+      "targetSdkVersion": 35,
       "adaptiveIcon": {
         "foregroundImage": "./assets/image.png",
         "backgroundColor": "#ffffff"
@@ -27,8 +28,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "dde087aa-779e-4cc7-acc2-b30a03b464b2"
+        "projectId": "6133f4ad-dae4-45c1-b263-db9bb1c3a88f"
       }
-    }
+    },
+    "owner": "estef1397"
   }
 }

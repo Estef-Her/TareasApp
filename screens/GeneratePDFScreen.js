@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View ,StyleSheet,Platform } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { getTasksInRange } from "../utils/storage";
-import RNHTMLtoPDF from "react-native-html-to-pdf";
 import * as Print from "expo-print";
 import DateTimePicker from "@react-native-community/datetimepicker";
 

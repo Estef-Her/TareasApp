@@ -1,0 +1,16 @@
+{
+  "build": {
+    "production": {
+      "node": "20",
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "cache": {
+        "disabled": true
+      },
+      "npm": {
+        "installCommand": "npm install --legacy-peer-deps"
+      }
+    }
+  }
+}
