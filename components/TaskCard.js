@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Text, Button } from 'react-native-paper';
+import { Card, Text, Button,Chip } from 'react-native-paper';
+import { View, StyleSheet, Alert } from "react-native";
 
 export default function TaskCard({ task, onDelete }) {
   const formatCurrency = (value) => {
@@ -9,38 +10,47 @@ export default function TaskCard({ task, onDelete }) {
       minimumFractionDigits: 2,
     }).format(value);
   };
+   const handleDelete = () => {
+    Alert.alert(
+      "Eliminar tarea",
+      "¿Deseas eliminar esta tarea?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel",
+        },
+        {
+          text: "Eliminar",
+          style: "destructive",
+          onPress: onDelete,
+        },
+      ]
+    );
+  };
   return (
-    <Card style={{ marginVertical: 5,backgroundColor:'#ffffffff',marginVertical:10}}>
+    <Card style={styles.card}>
       <Card.Content>
-      <Text
-      style={{
-        position: 'absolute',
-        top: 5,
-        right: 10,
-        fontSize: 12,
-        color: '#888',
-      }}
-    >
-      {task.date}
-    </Text>
-        <Text variant="titleMedium" style={{color:'#255957',fontSize:20,fontWeight:'bold'}}>{task.description}</Text>
-        <Text variant="bodyMedium" style={{color:'black',fontSize:16}}>Horas: {task.hours}</Text>
-        <Text variant="bodySmall" style={{color:'black',fontSize:16}}>Monto a cobrar: {formatCurrency(task.rate)}</Text>
+        <View style={styles.dateContainer}>
+          <Text style={styles.dateText}>📅 {task.date}</Text>
+        </View>
+        <Text variant="titleMedium" style={styles.title}>{task.description}</Text>
+       {/* Información */}
+        <View style={styles.infoContainer}>
+          <Chip icon="clock-outline" style={styles.chip}>
+            <Text style={styles.dateText}>{task.hours} horas</Text>
+          </Chip>
+
+          <Chip icon="cash" style={styles.moneyChip}>
+            <Text style={styles.dateText}>{formatCurrency(task.rate)}</Text>
+          </Chip>
+        </View>
 
         {onDelete && (
           <Button
             mode="text"
-            onPress={onDelete}
+            onPress={handleDelete}
             textColor="white"icon="delete"
-            style={{
-                marginTop: 10,
-                width:'auto',
-                backgroundColor: '#C95F4D',
-                borderWidth: 1,
-                borderRadius: 6,
-                alignSelf: 'flex-end',
-                paddingHorizontal: 10,
-              }}
+            style={styles.deleteButton}
           >
             Eliminar
           </Button>
@@ -49,3 +59,66 @@ export default function TaskCard({ task, onDelete }) {
     </Card>
   );
 }
+const styles = StyleSheet.create({
+  card: {
+    marginVertical: 10,
+    marginHorizontal: 2,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 22,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    overflow: "hidden",
+  },
+
+  dateContainer: {
+    alignItems: "flex-end",
+    marginBottom: 5,
+  },
+
+  dateText: {
+    fontSize: 15,
+    color: "#393737",
+    fontWeight: "600",
+  },
+
+  title: {
+    color: "#022267",
+    fontSize: 21,
+    fontWeight: "bold",
+    marginBottom: 15,
+  },
+
+  infoContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
+    marginBottom: 15,
+  },
+
+  chip: {
+    backgroundColor: "#EAF4FF",
+  },
+
+  moneyChip: {
+    backgroundColor: "#EAF4FF",
+  },
+
+  deleteButton: {
+    alignSelf: "flex-end",
+    borderRadius: 12,
+    backgroundColor: "#D9534F",
+    paddingHorizontal: 8,
+    marginTop: 5,
+  },
+
+  deleteButtonText: {
+    color: "#FFFFFF",
+    fontWeight: "bold",
+  },
+});
